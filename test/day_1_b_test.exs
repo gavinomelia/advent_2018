@@ -24,7 +24,6 @@ defmodule Advent2018.Day1BTest do
     assert Day1B.first_duplicate(input) == 10
   end
 
-
   test "example 3" do
     input = """
     -6
@@ -1022,5 +1021,4 @@ defmodule Advent2018.Day1BTest do
 
     assert Day1B.first_duplicate(input) == 462
   end
-
 end
