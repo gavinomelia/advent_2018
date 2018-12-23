@@ -1,27 +1,21 @@
 defmodule Day2A do
   def checksum(input) do
-    split = String.split(input)
-
-    Enum.map(split, fn x ->
+    input
+    |> String.split()
+    |> Enum.map(fn x ->
       Enum.reduce(String.graphemes(x), %{}, fn each, acc ->
         Map.update(acc, each, 1, &(&1 + 1))
       end)
     end)
+    |> Enum.map(&Map.values/1)
     |> multiply
   end
 
-  def multiply(map) do
-    values = Enum.map(map, &Map.values/1)
-
+  def multiply(values) do
     count(values, 2) * count(values, 3)
   end
 
   def count(values, number) do
-    Enum.map(values, fn each ->
-      Enum.filter(each, fn x -> x == number end)
-      |> Enum.uniq()
-      |> Enum.count()
-    end)
-    |> Enum.sum()
+    Enum.count(values, fn x -> Enum.member?(x, number) end)
   end
 end
